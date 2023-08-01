@@ -1,0 +1,11 @@
+.wrapper {width:100%; max-width: 600px; margin:0 auto; position:relative;}
+
+header {background-color: rgba(181, 255, 111, 0.829); position:absolute; left:0; top:0; width:100%; max-width: 600px; padding:15px 10px;}
+header .home {background:url(../public/image/icon_home.svg) no-repeat 0 0; display:block; width:20px; height:20px; margin:0 auto;}
+
+/* 검색 */
+.search_wrap {height:300px;}
+
+/* 목록 */
+.main_list {display:flex; flex-wrap: wrap; gap: 10px; text-align:center;}
+.main_list li {width:calc(50% - 5px); height:100px; box-sizing:border-box; border-radius:10px; border:1px solid #ddd;}
