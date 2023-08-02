@@ -1,21 +1,22 @@
-import { useRef, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
-import DataList from './data/DataList'
-import MainList from './collection/MainList'
-import Header from './layout/Header'
-import Search from './layout/Search'
+
+import { Routes, Route, BrowserRouter } from "react-router-dom";
+import Detail from './detail/Detail'
+import App_Main from './App_Main';
 
 function App() {
 	return (
-		<div className='wrapper'>
-			<Header/>
-			<Search/>
-			<MainList/>
+		<BrowserRouter>
 
-			<DataList/>
-		</div>
+			<Routes>
+				{/* useParams */}
+
+				<Route path="/" element={<App_Main />} />
+				{/* 웹 서비스 소개 페이지 */}
+				<Route path="/detail" element={<Detail />} />
+				{/* 상세페이지 */}
+			</Routes>
+		</BrowserRouter>
 	)
 }
 

@@ -1,11 +1,18 @@
-.wrapper {width:100%; max-width: 600px; margin:0 auto; position:relative;}
+.wrapper {width:100%; max-width: 600px; margin:0 auto; position:relative; padding-bottom:200px; padding-top:52px;}
 
-header {background-color: rgba(181, 255, 111, 0.829); position:absolute; left:0; top:0; width:100%; max-width: 600px; padding:15px 10px;}
+header {background-color:#fff; border-bottom:2px solid #111; position:fixed; left:50%; top:0; transform: translateX(-50%); width:100%; max-width: 600px; padding:15px 10px; box-sizing:border-box; z-index:100;}
 header .home {background:url(../public/image/icon_home.svg) no-repeat 0 0; display:block; width:20px; height:20px; margin:0 auto;}
 
 /* 검색 */
-.search_wrap {height:300px;}
+.search_wrap {margin:20px; position:relative;}
+.search_wrap input {border-radius:30px; border:2px solid #ddd; width:100%; height:50px; padding:0 60px 0 20px; box-sizing:border-box;}
+.search_wrap button {width:30px; height:30px; background:url(../public/image/icon_sch.png) no-repeat 0 0; background-size:30px; position:absolute; right:20px; top:50%; transform: translateY(-50%);}
 
 /* 목록 */
-.main_list {display:flex; flex-wrap: wrap; gap: 10px; text-align:center;}
-.main_list li {width:calc(50% - 5px); height:100px; box-sizing:border-box; border-radius:10px; border:1px solid #ddd;}
+.main_tit {font-size:30px; font-weight:700; margin: 100px 0 30px 10px;}
+.main_list .slick-slide {width:200px; margin: 0 20px;}
+.main_list figure {position:relative; height:0; width:100%; padding-top:98%; box-sizing:border-box; border-radius:15px; border:1px solid #ddd; overflow:hidden;}
+.main_list figure img {position:absolute; left:0; top:0; width:100%; height:100%; object-fit: cover; display:block;}
+.main_list span {display:block; margin-top:10px; font-size:15px;}
+.main_list p {margin-top:5px; font-weight:700; font-size:20px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; word-wrap:normal;}
+.main_list strong {font-size:14px; font-weight: 600; color:#aaa; margin-top:10px; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; text-overflow: ellipsis; word-wrap: break-word; overflow: hidden;}

@@ -6,21 +6,17 @@ import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 
-const MainList = ({db01}) => {
-	const [cul, setCul] = useState([]);
-	// console.log(db01);
+const MainList_02 = ({db01}) => {
+	const [cul2, setCul2] = useState([]);
 
-	// 문화체육관광부 리스트 노출
+	// 고양문화재단 리스트 노출
 	useEffect(() => {
 		let dataSwiper = Object.values(db01).map(((tit, i) => {
 			const name = tit.title, //제목
 				imgURl = tit.referenceIdentifier, //이미지 경로
 				collection = tit.creator, //소속
 				time = tit.time
-			// console.log(collection);
-			// console.log(i);
-			if(collection.includes('문화체육관광부')){
-
+			if(collection.includes('고양문화재단')){
 				return <div className='group' key={i}>
 					<Link to="detail">
 						<figure>
@@ -33,7 +29,7 @@ const MainList = ({db01}) => {
 				</div>;
 			}
 		}));
-		setCul(dataSwiper)
+		setCul2(dataSwiper)
 	}, [db01]);
 
 	// Slick 옵션
@@ -45,12 +41,12 @@ const MainList = ({db01}) => {
 
 	return (
 		<>
-			<h2 className='main_tit'>문화체육관광부</h2>
+			<h2 className='main_tit'>고양문화재단</h2>
 			<Slider {...settings} className='main_list'>
-				{cul}
+				{cul2}
 			</Slider>
 		</>
 	);
 };
 
-export default MainList;
+export default MainList_02;

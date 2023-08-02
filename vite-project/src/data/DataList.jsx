@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import MainList from '../collection/MainList';
+import MainList_02 from '../collection/MainList_02';
+import App_Main from '../App_Main';
+import Header from '../layout/Header';
 
 const DataList = () => {
-	const [test, setTest] = useState();
+	const [db01, setDb01] = useState([]); // 문화체육관광부
 	function xmlToJson(xml) { //XML 을 JSON 형식으로 변환
 		// Create the return object
 		var obj = {};
@@ -53,38 +56,29 @@ const DataList = () => {
 	useEffect(() => {
 		const getXMLfromAPI = async () => {
 
-			// const url = "http://api.kcisa.kr/openapi/service/rest/convergence/conver6?serviceKey="; //API URL
-			// const ENCODING_API_KEY = "002b3e6a-94ee-4983-b34d-6d722e34ea3f" //KEY 값
-			const url = "http://api.kcisa.kr/openapi/service/rest/convergence2019/getConver05?serviceKey="; //API URL
-			const ENCODING_API_KEY = "ebd38241-f0fc-4fee-b72f-d5d9d276b64f" //KEY 값
-			const numRow = "&numOfRows=10" //요청레코드수
-			const reqURL = `${url}${ENCODING_API_KEY}${numRow}`; //URL
+			const url = "http://api.kcisa.kr/openapi/service/rest/convergence/conver6?serviceKey="; //API URL
+			const ENCODING_API_KEY = "002b3e6a-94ee-4983-b34d-6d722e34ea3f" //KEY 값
+			// const url = "http://api.kcisa.kr/openapi/service/rest/convergence2019/getConver05?serviceKey="; //API URL
+			// const ENCODING_API_KEY = "ebd38241-f0fc-4fee-b72f-d5d9d276b64f" //KEY 값
+			const numRow = "&numOfRows=138" //요청레코드수
+			const keyword = "&keyword=" //검색어
+			const reqURL = `${url}${ENCODING_API_KEY}${numRow}${keyword}`; //URL
 			const response = await fetch(reqURL);
 			const xmlString = await response.text();
 
 			let XmlNode = new DOMParser().parseFromString(xmlString, "text/xml");
 			let dataList = xmlToJson(XmlNode).response.body.items.item
-			let dataTitle = Object.values(dataList).map(((tit, i) => {
-				const name = tit.title
-				const grades = tit.grade
-				if(name.includes(' ')){
-					return <li key={i}>
-						<p>{name}</p>
-						<strong>{grades}</strong>
-					</li>;
-				}
-			}))
-			setTest(dataTitle)
+			setDb01(dataList);
 		};
 
 		getXMLfromAPI();
 	}, [])
-	// console.log(test);
-
 
 	return (
 		<div>
-			<MainList test={test}/>
+			<MainList db01={db01}/>
+			<MainList_02 db01={db01}/>
+			{/* <App_Main db01={db01}/> */}
 		</div>
 	);
 };

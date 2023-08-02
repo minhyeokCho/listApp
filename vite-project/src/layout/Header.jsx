@@ -1,9 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
 	return (
 		<header>
-			<a href="#" className='home'><span className='blind'>홈으로</span></a>
+			<Link to="/">
+				<h1 className='home'><span className='blind'>홈으로</span></h1>
+			</Link>
 		</header>
 	);
 };
