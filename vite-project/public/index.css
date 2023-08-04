@@ -11,13 +11,13 @@
 html,body,div,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,
 abbr,address,big,cite,code,del,dfn,font,figure,figcaption,img,ins,q,s,samp,small,strike,sub,sup,tt,var,
 b,u,i,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td {
-	font:16px/1em 'Pretendard',sans-serif;
+	font:16px/1.2 'Pretendard',sans-serif;
 	color:#111111;
 	margin:0;
 	padding:0;
 }
-button,input,textarea {font:16px/1em 'Pretendard',sans-serif; letter-spacing:0;}
-select {font:16px/1em 'Pretendard',sans-serif; letter-spacing:0;}
+button,input,textarea {font:16px/1.2 'Pretendard',sans-serif; letter-spacing:0;}
+select {font:16px/1.2 'Pretendard',sans-serif; letter-spacing:0;}
 
 html, body{
 	-webkit-text-size-adjust : none;

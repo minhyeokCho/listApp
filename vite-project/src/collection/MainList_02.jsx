@@ -16,9 +16,10 @@ const MainList_02 = ({db01}) => {
 				imgURl = tit.referenceIdentifier, //이미지 경로
 				collection = tit.creator, //소속
 				time = tit.time
+
 			if(collection.includes('고양문화재단')){
 				return <div className='group' key={i}>
-					<Link to="detail">
+					<Link to={`/detail/${i}`}>
 						<figure>
 							<img src={imgURl} alt="" />
 						</figure>
@@ -41,7 +42,10 @@ const MainList_02 = ({db01}) => {
 
 	return (
 		<>
-			<h2 className='main_tit'>고양문화재단</h2>
+			<div className="tit_area">
+				<h2 className='main_tit'>고양문화재단</h2>
+				<Link to={'/search/List/고양문화재단'}>전체보기 &gt; </Link>
+			</div>
 			<Slider {...settings} className='main_list'>
 				{cul2}
 			</Slider>

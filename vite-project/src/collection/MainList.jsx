@@ -8,7 +8,6 @@ import 'slick-carousel/slick/slick-theme.css';
 
 const MainList = ({db01}) => {
 	const [cul, setCul] = useState([]);
-	// console.log(db01);
 
 	// 문화체육관광부 리스트 노출
 	useEffect(() => {
@@ -17,12 +16,10 @@ const MainList = ({db01}) => {
 				imgURl = tit.referenceIdentifier, //이미지 경로
 				collection = tit.creator, //소속
 				time = tit.time
-			// console.log(collection);
-			// console.log(i);
-			if(collection.includes('문화체육관광부')){
 
+			if(collection.includes('문화체육관광부')){
 				return <div className='group' key={i}>
-					<Link to="detail">
+					<Link to={`/detail/${i}`}>
 						<figure>
 							<img src={imgURl} alt="" />
 						</figure>
@@ -45,7 +42,10 @@ const MainList = ({db01}) => {
 
 	return (
 		<>
-			<h2 className='main_tit'>문화체육관광부</h2>
+			<div className="tit_area">
+				<h2 className='main_tit'>문화체육관광부</h2>
+				<Link to={'/search/List/문화체육관광부'}>전체보기 &gt; </Link>
+			</div>
 			<Slider {...settings} className='main_list'>
 				{cul}
 			</Slider>
