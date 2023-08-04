@@ -31,7 +31,7 @@ const Srch_List = ({db01}) => {
 		}));
 		setCul(dataList)
 	}, [db01]);
-	console.log(order);
+	// console.log(order);
 
 	// const sortBy = order.sort((a,b) => {
 	// 	if(a.rn > b.rn) return 1;

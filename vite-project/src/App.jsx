@@ -64,11 +64,9 @@ function App() {
 			// const url = "http://api.kcisa.kr/openapi/service/rest/convergence2019/getConver05?serviceKey="; //API URL
 			// const ENCODING_API_KEY = "ebd38241-f0fc-4fee-b72f-d5d9d276b64f" //KEY 값
 			const numRow = "&numOfRows=138" //요청레코드수
-			// const keyword = "&keyword=" //검색어
-			const reqURL = `${url}${ENCODING_API_KEY}${numRow}`; //URL
-			const response = await fetch(reqURL,{
-				mode: 'no-cors'
-			});
+			const keyword = "&keyword=" //검색어
+			const reqURL = `${url}${ENCODING_API_KEY}${numRow}${keyword}`; //URL
+			const response = await fetch(reqURL);
 			const xmlString = await response.text();
 
 			let XmlNode = new DOMParser().parseFromString(xmlString, "text/xml");
