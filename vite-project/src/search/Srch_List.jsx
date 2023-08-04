@@ -33,12 +33,12 @@ const Srch_List = ({db01}) => {
 	}, [db01]);
 	console.log(order);
 
-	const sortBy = order.sort((a,b) => {
-		if(a.rn > b.rn) return 1;
-		if(a.rn < b.rn) return -1;
-		return 0;
-	})
-	console.log(sortBy);
+	// const sortBy = order.sort((a,b) => {
+	// 	if(a.rn > b.rn) return 1;
+	// 	if(a.rn < b.rn) return -1;
+	// 	return 0;
+	// })
+	// console.log(sortBy);
 
 	const handleSortClick = () => {
 
