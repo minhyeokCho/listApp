@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
+import Item from '../item/Item';
 
 const MainList = ({db01, value}) => {
 	const [cul, setCul] = useState([]);
@@ -18,17 +19,11 @@ const MainList = ({db01, value}) => {
 				collection = tit.creator, //소속
 				time = tit.charge;
 
-				//referenceIdentifier 없을경우
 				if(collection.includes(value) && count < 5){
 					count = count + 1
 					return <div className='group' key={i}>
 						<Link to={`/detail/${tit.rn}`}>
-							<figure>
-								<img src={imgURl} alt="" />
-							</figure>
-							<span>{collection}</span>
-							<p>{name}</p>
-							<strong>{JSON.stringify(time)}</strong>
+							<Item imgURl={imgURl} collection={collection} name={name} time={time}/>
 						</Link>
 					</div>;
 			}

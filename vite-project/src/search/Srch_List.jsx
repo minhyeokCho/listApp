@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { Routes, Route, BrowserRouter } from "react-router-dom";
-
 import { Link, useParams } from 'react-router-dom';
+import Item from '../item/Item';
+import Pagination from '../item/Pagination';
+
 
 const Srch_List = ({db01}) => {
 	let {title} = useParams();
@@ -10,49 +11,41 @@ const Srch_List = ({db01}) => {
 	const [cul, setCul] = useState([]); //배열 노출
 	const [isActive, setIsActive] = useState(0); //정렬 탭 active
 	const [type , setType] = useState(false); //목록 노출 타입
-	// 문화체육관광부 리스트 노출
+
+	// paging
+	const [crtPage, setCrtPage] = useState(1);
+	const [totPage, setTotPage] = useState()
+
+	const typeChange = () => {setType(!type);} //데이터 목록 형태
+	const tab = [{name: '인기순'},{name: '최신순'},{name: '가나다순'}] //탭메뉴
+
+	let database = db01.filter((tit) => tit.creator.includes(pageTit)) //데이터 필터
+	let count = database.length
 
 	useEffect(() => {
-		const database = db01.filter((tit) => tit.creator.includes(pageTit))
 		setOrder(database)
 	},[db01])
 
 	useEffect(() => {
+
+
 		let dataList = Object.values(order).map(((tit, i) => {
 			const name = tit.title, //제목
 				imgURl = tit.referenceIdentifier, //이미지 경로
 				collection = tit.creator, //소속
 				time = tit.time
 
-			if(collection.includes(pageTit)){
-				return <div className='group' key={i}>
-					<Link to={`/detail/${tit.rn}`}>
-						<figure>
-							<img src={imgURl} alt="" />
-						</figure>
-						<span>{collection}</span>
-						<p>{name}</p>
-						<strong>{time}</strong>{tit.rn}
-					</Link>
-				</div>;
-			}
+			return <div className='group' key={i}>
+				<Link to={`/detail/${tit.rn}`}>
+					<Item imgURl={imgURl} collection={collection} name={name} time={time} rn={tit.rn} />
+				</Link>
+			</div>;
 		}));
 		setCul(dataList)
 	}, [order]);
 
-	const typeChange = () => {
-		setType(!type);
-	}
-
-	const tab = [
-		{name: '인기순'},
-		{name: '최신순'},
-		{name: '가나다순'}
-	]
-
 	// 정렬 탭
 	const handleClick = (index) => {
-		const database = db01.filter((tit) => tit.creator.includes(pageTit))
 		setIsActive(index); //탭 active
 
 		// 정렬 탭
@@ -82,6 +75,7 @@ const Srch_List = ({db01}) => {
 
 	return (
 		<div className='srch_wrap'>
+			<Pagination count={count}></Pagination>
 			<div className="srch_tit">
 				<h2>{pageTit}</h2>
 				<div className="sort_wrap">

@@ -65,7 +65,7 @@ function App() {
 			const ENCODING_API_KEY = "002b3e6a-94ee-4983-b34d-6d722e34ea3f" //KEY 값
 			// const url = "http://api.kcisa.kr/openapi/service/rest/convergence2019/getConver05?serviceKey="; //API URL
 			// const ENCODING_API_KEY = "ebd38241-f0fc-4fee-b72f-d5d9d276b64f" //KEY 값
-			const numRow = "&numOfRows=2000" //요청레코드수
+			const numRow = "&numOfRows=500" //요청레코드수
 			const keyword = "&keyword=" //검색어
 			const reqURL = `${url}${ENCODING_API_KEY}${numRow}${keyword}`; //URL
 			const response = await fetch(reqURL);
@@ -73,11 +73,14 @@ function App() {
 
 			let XmlNode = new DOMParser().parseFromString(xmlString, "text/xml");
 			let dataList = xmlToJson(XmlNode).response.body.items.item
-			setDb01(dataList);
+
+			let database = dataList.filter(data => Object.keys(data.referenceIdentifier).length !==  0)
+			setDb01(database)
 		};
 
 		getXMLfromAPI();
 	}, [])
+
 	return (
 		<div className="wrapper">
 			<BrowserRouter>
