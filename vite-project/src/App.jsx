@@ -6,6 +6,8 @@ import App_Main from './main/App_Main';
 import Header from './layout/Header';
 import Srch_List from './search/Srch_List';
 import ScrollToTop from './ScrollToTop';
+import Search from './layout/Search';
+import { createContext } from 'react';
 
 function App() {
 	const [db01, setDb01] = useState([]);
@@ -63,7 +65,7 @@ function App() {
 			const ENCODING_API_KEY = "002b3e6a-94ee-4983-b34d-6d722e34ea3f" //KEY 값
 			// const url = "http://api.kcisa.kr/openapi/service/rest/convergence2019/getConver05?serviceKey="; //API URL
 			// const ENCODING_API_KEY = "ebd38241-f0fc-4fee-b72f-d5d9d276b64f" //KEY 값
-			const numRow = "&numOfRows=138" //요청레코드수
+			const numRow = "&numOfRows=2000" //요청레코드수
 			const keyword = "&keyword=" //검색어
 			const reqURL = `${url}${ENCODING_API_KEY}${numRow}${keyword}`; //URL
 			const response = await fetch(reqURL);
@@ -76,12 +78,11 @@ function App() {
 
 		getXMLfromAPI();
 	}, [])
-
 	return (
 		<div className="wrapper">
 			<BrowserRouter>
 				<ScrollToTop/>
-				<Header/>
+				<Header element={<Search db01={db01}/>} />
 				<Routes>
 					{/* useParams */}
 
@@ -90,7 +91,7 @@ function App() {
 					<Route path="/detail/:id" element={<Detail db01={db01} />} />
 					{/* 상세페이지 */}
 					<Route path="/search/List/:title" element={<Srch_List db01={db01} />} />
-					{/* 상세페이지 */}
+					{/* 상세 목록페이지 */}
 				</Routes>
 			</BrowserRouter>
 		</div>
